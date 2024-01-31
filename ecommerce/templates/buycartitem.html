@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="cointainer" style="margin-top: 120px; align-items: center;">
+    <h2>Checkout</h2>
+
+  <div class="cart-items">
+    <h2>Your Cart</h2>
+  <table>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    {% for item in cart_items %}
+    <tr>
+      <td>{{ item.product.product_name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.product.discounted_price }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="address1">Address 1:</label><br>
+    <input type="text" id="address1" name="address1"><br>
+    <label for="address2">Address 2:</label><br>
+    <input type="text" id="address2" name="address2"><br>
+    <label for="city">City:</label><br>
+    <input type="text" id="city" name="city"><br>
+    <label for="state">State:</label><br>
+    <input type="text" id="state" name="state"><br>
+    <label for="zip_code">Zip Code:</label><br>
+    <input type="text" id="zip_code" name="zip_code"><br>
+    <label for="phone">Phone:</label><br>
+    <input type="text" id="phone" name="phone"><br>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Payment Option
+      </button>
+      <ul class="dropdown-menu">
+        <li><p class="dropdown-item"> Cash On Delivary</p></li>
+      </ul>
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+  </div>
+
+  
+{% endblock body %}

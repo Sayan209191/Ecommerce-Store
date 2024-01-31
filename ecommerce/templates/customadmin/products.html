@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      th,
+      td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      
+      img {
+        width: 50px;
+        height: 50px;
+      }
+      
+      button {
+        background-color: #2ebe36;
+        color: white;
+        padding: 10px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      button.header {
+        background-color: #2f92ee;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="/admin/dashboard"><h2>Home</h2></a>
+    <a href="/admin/add_product">
+      <button class="header-button" type="submit">Add Product</button>
+    </a>
+    <h2 style="text-align: center;">Product Listing</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Product</th>
+          <th>Product Id</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Discounted Price</th>
+          <th>
+            Edit User
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in product %}
+          <tr>
+            <td>
+              <img src="/media/{{ i.image }}" alt="Pic" />
+            </td>
+            <td>{{ i.product_name }}</td>
+            <td>{{ i.product_id }}</td>
+            <td>{{ i.desc }}</td>
+            <td>{{ i.category }}</td>
+            <td>₹{{ i.price }}</td>
+            <td>₹{{ i.discounted_price }}</td>
+            <td>
+              <form action="{% url 'customadmin:edit_product' i.product_id %}" method="GET">
+                {% csrf_token %}
+                <button type="submit">Edit</button>
+              </form>
+            </td>
+            <td> 
+              <form action="{% url 'customadmin:delete_product' i.product_id %}" method="GET">
+                {% csrf_token %}
+                <button type="submit" style="background-color: red;">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+        <!-- Add more product rows as needed -->
+      </tbody>
+    </table>
+  </body>
+</html>

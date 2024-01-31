@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+Thank You
+{% endblock title %}
+
+{% block style %}
+<style>
+    @import url(//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css);
+    @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+</style>
+{% endblock style %}
+
+{% block externalcss %}
+<link href='https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css">
+{% endblock externalcss %}
+
+	
+	
+{% block body %}
+
+
+<div class="main-content" style="margin-top: 120px;">
+    <h1 class="site-header__title" data-lead-id="site-header-title" style="margin-top: 120px;">THANK YOU!</h1>
+    <i class="fa fa-check main-content__checkmark" id="checkmark"></i>
+    <p class="main-content__body" data-lead-id="main-content-body" style="margin-top: 120px;">Thank you for shopping with us! Each order means the world to us, and we are so happy you chose our small business today. </p>
+    <p class="site-footer__fineprint" id="fineprint">Copyright ©2024 | All Rights Reserved</p>
+</div>
+
+
+
+{% block script %}
+<script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/jquery-1.9.1.min.js"></script>
+<script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/html5shiv.js"></script>
+{% endblock script %}
+
+{% endblock body %}

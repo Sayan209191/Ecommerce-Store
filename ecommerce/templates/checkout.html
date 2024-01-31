@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<style>
+    /* Fonts */
+    @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Space+Mono:700');
+
+    /* Variables */
+    :root {
+        --blue: dodgerblue;
+        --violet: rebeccapurple;
+        --yellow: lemonchiffon;
+    }
+
+    /* Global Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        height: 100%;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+    }
+
+    /* Center Wrapper */
+    .center-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+    }
+
+    /* Container Styles */
+    .content {
+        margin: 0 auto;
+        max-width: 600px;
+        border: 1px solid var(--yellow);
+        background: white;
+        padding: 1rem;
+    }
+
+    /* Navigation Styles */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        background: var(--blue);
+        color: white;
+    }
+
+    .logo {
+        font-family: 'Space Mono', sans-serif;
+        text-transform: uppercase;
+    }
+
+    .icons {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Checkout Styles */
+    .checkout-details {
+        margin-top: 1rem;
+    }
+
+    .product-details {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .product-image {
+        width: 100px; /* Adjust according to your preference */
+        margin-right: 1rem;
+    }
+
+    .description {
+        flex: 1;
+    }
+
+    .description h2,
+    .description p {
+        margin-bottom: 0.5rem;
+    }
+
+    .checkout-form input {
+        width: calc(100% - 20px);
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+
+    .checkout-form input:focus {
+        border-color: var(--blue);
+        outline: none;
+    }
+
+    .btn-go-checkout {
+        display: inline-block;
+        width: calc(100% - 20px);
+        padding: 12px 0;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #fff;
+        background-color: var(--violet);
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-go-checkout:hover {
+        background-color: #5a2d8a;
+    }
+
+    /* Help Styles */
+    .help {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #777;
+    }
+
+    /* Background */
+    html {
+        background: repeating-linear-gradient(
+            -45deg,
+            var(--yellow),
+            var(--yellow) 10px,
+            darken(var(--yellow), 10%) 10px,
+            darken(var(--yellow), 10%) 20px
+        );
+    }
+</style>
+</head>
+<body>
+
+<div class="center-wrapper">
+    <div class="content">
+        <nav>
+            <a href="/" class="menu">Home</a>
+            <h1 class="logo">Infycart</h1>
+        </nav>
+
+        <div class="checkout-details">
+            <h1>{{product.product_name}}</h1>
+            <div class="product-details">
+                <img src="/media/{{product.image}}" class="product-image">
+                <div class="description">
+                    <h2></h2>
+                    <p>{{product.desc}}</p>
+                    <h2>Price : ₹  {{product.discounted_price}}</h2>
+                </div>
+            </div>
+            <div class="checkout-form">
+                <form method="POST" action="{% url 'home:buy_now' product.product_id %}">
+					{% csrf_token %}
+                    <input type="text" name="name" placeholder="Name">
+                    <input type="text" name="address1" placeholder="Address Line 1">
+                    <input type="text" name="address2" placeholder="Address Line 2">
+                    <input type="text" name="city" placeholder="City">
+                    <input type="text" name="state" placeholder="State">
+                    <input type="text" name="zip_code" placeholder="Zip Code">
+                    <input type="text" name="phone" placeholder="Phone">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Payment Method
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li><p>Cash On Delivary</p></li>
+                        </ul>
+                      </div>
+                    <button type="submit" class="btn-go-checkout">Place Order</button>
+                </form>
+            </div>
+        </div>
+        <div class="help">
+            <p>Need help? Call free 01234 567 890</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
